@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-/* eslint-disable import/extensions */
-/* eslint-disable no-console */
 
 import { Command } from 'commander/esm.mjs';
-import gendiff from '../src/index.js';
+import gendiff from '../index.js';
 
 const program = new Command();
 

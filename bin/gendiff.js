@@ -1,6 +1,9 @@
 #!/usr/bin/env node
+/* eslint-disable import/extensions */
+/* eslint-disable no-console */
 
 import { Command } from 'commander/esm.mjs';
+import gendiff from '../src/index.js';
 
 const program = new Command();
 
@@ -10,4 +13,5 @@ program
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format [type]', 'output format')
   .arguments('<filepath1>, <filepath2>')
+  .action((filePath1, filePath2) => console.log(gendiff(filePath1, filePath2)));
 program.parse();

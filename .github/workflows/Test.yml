@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Test
+
+# Controls when the workflow will run
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: make install
+        env:
+          CI: true
+      - run: make lint
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: 6cb6d443c7dbbb9bc9d08e9054957884a3930db45271336a7a2b44cde9d3934e
+        with:
+          coverageCommand: make test-covverage
+          debug: true

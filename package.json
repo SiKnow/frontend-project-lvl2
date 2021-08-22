@@ -4,9 +4,12 @@
   "description": "[![Actions Status](https://github.com/SiKnow/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/SiKnow/frontend-project-lvl2/actions)",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx -n --experimental-vm-modules -n --no-warnings jest --bail"
   },
   "type": "module",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/siknow/frontend-project-lvl2.git"

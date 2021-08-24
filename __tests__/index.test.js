@@ -14,3 +14,9 @@ test('getData', () => {
   const answer = readFile('expect.txt').trim();
   expect(result).toEqual(answer);
 });
+
+test('YAML', () => {
+  const result = genDiff('file1.yaml', 'file2.yml');
+  const answer = readFile('expect.txt').trim();
+  expect(result).toEqual(answer);
+});

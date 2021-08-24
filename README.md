@@ -23,3 +23,6 @@ $ gendiff <filePath1> <filePath2>
 
 ### Find difference on two .JSON files
 [![asciicast](https://asciinema.org/a/429546.svg)](https://asciinema.org/a/429546)
+
+### Find difference on two .YAML files
+[![asciicast](https://asciinema.org/a/432140.svg)](https://asciinema.org/a/432140)

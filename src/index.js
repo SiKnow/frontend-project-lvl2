@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import _ from 'lodash';
-import getData from './parser.js';
+import getData from './parsers.js';
 
 const genDiff = (filePath1, filePath2) => {
   const file1 = getData(filePath1);

@@ -24,7 +24,7 @@ const buildTree = (file1, file2) => {
       };
     }
 
-    if (_.isPlainObject(file1, key) && _.isPlainObject(file2, key)) {
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return {
         type: 'nested',
         name: key,

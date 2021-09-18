@@ -8,19 +8,10 @@ const buildTree = (file1, file2) => {
     const value1 = file1[key];
     const value2 = file2[key];
 
-    if (value1 !== value2) {
-      return {
-        type: 'change',
-        key,
-        value1,
-        value2,
-      };
-    }
-
     if (!_.has(file1, key)) {
       return {
         type: 'add',
-        key,
+        name: key,
         value: value2,
       };
     }
@@ -28,22 +19,31 @@ const buildTree = (file1, file2) => {
     if (!_.has(file2, key)) {
       return {
         type: 'delete',
-        key,
+        name: key,
         value: value1,
       };
     }
 
-    if (_.isObject(file1, key) && _.isObject(file2, key)) {
+    if (_.isPlainObject(file1, key) && _.isPlainObject(file2, key)) {
       return {
         type: 'nested',
-        key,
+        name: key,
         child: buildTree(value1, value2),
+      };
+    }
+
+    if (!_.isEqual(value1, value2)) {
+      return {
+        type: 'change',
+        name: key,
+        value1,
+        value2,
       };
     }
 
     return {
       type: 'unchange',
-      key,
+      name: key,
       value: value2,
     };
   });

@@ -15,7 +15,7 @@ const diffSymbols = {
 };
 
 const stringify = (value, depth) => {
-  if (!_.isObject(value)) {
+  if (!_.isPlainObject(value)) {
     return value;
   }
 
@@ -39,24 +39,29 @@ const stylish = (tree) => {
     const indent = getIndent(depth);
     return diffTree.map((node) => {
       switch (node.type) {
+        case 'nested':
+          const value = `${indent} ${node.name}: ${[
+            '{',
+            style(node.child, depth + 1),
+            `${indent} }`,
+          ].join('\n')}`;
+          return value;
         case 'change':
           const data1 = stringify(node.value1, depth);
           const data2 = stringify(node.value2, depth);
-          const node1 = `${indent}${diffSymbols.delete} ${node.key}: ${data1}`;
-          const node2 = `${indent}${diffSymbols.add} ${node.key}: ${data2}`;
+          const node1 = `${indent}${diffSymbols.delete} ${node.name}: ${data1}`;
+          const node2 = `${indent}${diffSymbols.add} ${node.name}: ${data2}`;
           return [node1, node2].join('\n');
-        case 'nested':
-          const value = `${indent} ${node.key}: ${['{', style(node.child, depth + 1), `${indent}  }`].join('\n')}`;
-          return value;
         case 'unchange':
         case 'add':
         case 'delete':
           const val = stringify(node.value, depth);
-          return `${indent}${diffSymbols[node.type]} ${node.key}: ${val}`;
+          return `${indent}${diffSymbols[node.type]} ${node.name}: ${val}`;
         default:
           throw new Error('Error type!');
       }
-    }).join('\n');
+    })
+      .join('\n');
   };
   return [
     '{',

@@ -28,3 +28,12 @@ $ gendiff <filePath1> <filePath2>
 
 ### Find difference on two .YAML files
 [![asciicast](https://asciinema.org/a/432140.svg)](https://asciinema.org/a/432140)
+
+### To find difference of two JSON files with plain format use:
+
+```
+$ gendiff -f plain <filePath1> <filePath2>
+```
+
+### Find difference on two .JSON files with plain format
+[![asciicast](https://asciinema.org/a/437395.svg)](https://asciinema.org/a/437395)

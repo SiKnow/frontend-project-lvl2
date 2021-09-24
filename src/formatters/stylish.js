@@ -1,12 +1,7 @@
 /* eslint-disable no-case-declarations */
 import _ from 'lodash';
 
-const getIndent = (depth) => {
-  const spaces = 4;
-  const replacer = ' ';
-  const depthIndent = replacer.repeat(depth * spaces - 2);
-  return depthIndent;
-};
+const getIndent = (depth, spaces = 4) => ' '.repeat(depth * spaces - 2);
 
 const diffSymbols = {
   delete: '-',
@@ -42,7 +37,7 @@ const stylish = (tree) => {
         case 'nested':
           const value = `${indent} ${node.name}: ${[
             '{',
-            style(node.child, depth + 1),
+            style(node.children, depth + 1),
             `${indent} }`,
           ].join('\n')}`;
           return value;

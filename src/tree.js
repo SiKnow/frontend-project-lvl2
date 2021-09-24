@@ -1,10 +1,9 @@
 import _ from 'lodash';
 
 const buildTree = (file1, file2) => {
-  const keys1 = Object.keys(file1);
-  const keys2 = Object.keys(file2);
-  const unionKeys = _.union(keys1, keys2).sort();
-  const result = unionKeys.map((key) => {
+  const keys = _.union(Object.keys(file1), Object.keys(file2)).sort();
+
+  return keys.map((key) => {
     const value1 = file1[key];
     const value2 = file2[key];
 
@@ -28,7 +27,7 @@ const buildTree = (file1, file2) => {
       return {
         type: 'nested',
         name: key,
-        child: buildTree(value1, value2),
+        children: buildTree(value1, value2),
       };
     }
 
@@ -47,8 +46,6 @@ const buildTree = (file1, file2) => {
       value: value2,
     };
   });
-
-  return result;
 };
 
 export default buildTree;

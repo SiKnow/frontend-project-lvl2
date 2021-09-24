@@ -15,13 +15,10 @@ const stringify = (value, depth) => {
   }
 
   const indent = getIndent(depth);
-  const lines = Object
-    .entries(value)
-    .map(([key, val]) => {
-      const depthIndent = getIndent(depth + 1);
-      return `${depthIndent} ${key}: ${stringify(val, depth + 1)}`;
-    });
-
+  const lines = Object.entries(value).map(([key, val]) => {
+    const depthIndent = getIndent(depth + 1);
+    return `${depthIndent} ${key}: ${stringify(val, depth + 1)}`;
+  });
   return [
     '{',
     ...lines,
@@ -55,14 +52,9 @@ const stylish = (tree) => {
         default:
           throw new Error('Error type!');
       }
-    })
-      .join('\n');
+    }).join('\n');
   };
-  return [
-    '{',
-    style(tree, 1),
-    '}',
-  ].join('\n');
+  return ['{', style(tree, 1), '}'].join('\n');
 };
 
 export default stylish;

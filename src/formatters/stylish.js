@@ -13,7 +13,6 @@ const stringify = (value, depth) => {
   if (!_.isPlainObject(value)) {
     return value;
   }
-
   const indent = getIndent(depth);
   const lines = Object.entries(value).map(([key, val]) => {
     const depthIndent = getIndent(depth + 1);
@@ -32,12 +31,8 @@ const stylish = (tree) => {
     return diffTree.map((node) => {
       switch (node.type) {
         case 'nested':
-          const value = `${indent} ${node.name}: ${[
-            '{',
-            style(node.children, depth + 1),
-            `${indent} }`,
-          ].join('\n')}`;
-          return value;
+          return `${indent} ${node.name}: ${[
+            '{', style(node.children, depth + 1), `${indent} }`].join('\n')}`;
         case 'change':
           const data1 = stringify(node.value1, depth);
           const data2 = stringify(node.value2, depth);

@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 const buildTree = (file1, file2) => {
   const keys = _.union(Object.keys(file1), Object.keys(file2)).sort();
-
   return keys.map((key) => {
     const value1 = file1[key];
     const value2 = file2[key];
@@ -14,7 +13,6 @@ const buildTree = (file1, file2) => {
         value: value2,
       };
     }
-
     if (!_.has(file2, key)) {
       return {
         type: 'delete',
@@ -22,7 +20,6 @@ const buildTree = (file1, file2) => {
         value: value1,
       };
     }
-
     if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return {
         type: 'nested',
@@ -30,7 +27,6 @@ const buildTree = (file1, file2) => {
         children: buildTree(value1, value2),
       };
     }
-
     if (!_.isEqual(value1, value2)) {
       return {
         type: 'change',
@@ -39,7 +35,6 @@ const buildTree = (file1, file2) => {
         value2,
       };
     }
-
     return {
       type: 'unchange',
       name: key,

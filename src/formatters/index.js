@@ -3,18 +3,18 @@ import stylishFormat from './stylish.js';
 import plainFormat from './plain.js';
 import jsonFormat from './json.js';
 
-const formatters = {
+const formats = {
   json: jsonFormat,
   stylish: stylishFormat,
   plain: plainFormat,
 };
 
-const formats = (tree, formatName) => {
-  if (!_.has(formatters, formatName)) {
+const format = (tree, formatName) => {
+  if (!_.has(formats, formatName)) {
     throw new Error('Format Error!');
   }
 
-  return formatters[formatName](tree);
+  return formats[formatName](tree);
 };
 
-export default formats;
+export default format;

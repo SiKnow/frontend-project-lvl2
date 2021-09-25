@@ -46,7 +46,7 @@ test('json (yaml files) format check', () => {
 });
 
 test('json (json files) format check', () => {
-  const result = genDiff('file1.yaml', 'file2.yml', 'json');
+  const result = genDiff('file1.json', 'file2.json', 'json');
   const answer = readFile('expect.json').trim();
   expect(result).toEqual(answer);
 });

@@ -38,3 +38,15 @@ test('stylish format check', () => {
   const answer = readFile('expect.txt').trim();
   expect(result).toEqual(answer);
 });
+
+test('json (yaml files) format check', () => {
+  const result = genDiff('file1.yaml', 'file2.yml', 'json');
+  const answer = readFile('expect.json').trim();
+  expect(result).toEqual(answer);
+});
+
+test('json (json files) format check', () => {
+  const result = genDiff('file1.yaml', 'file2.yml', 'json');
+  const answer = readFile('expect.json').trim();
+  expect(result).toEqual(answer);
+});

@@ -6,8 +6,8 @@
 
 
 
-## Difference calculator
-### Calculate differences of two files 
+# Difference calculator
+### You can use this library for find difference of two files
 
 ### Setup
 
@@ -15,7 +15,7 @@
 $ make install
 ```
 
-### Comparisons of two JSON files
+### How to use
 
 ```
 $ gendiff <filePath1> <filePath2>
@@ -24,22 +24,37 @@ $ gendiff <filePath1> <filePath2>
 ### To find difference of two files with format you can use
 
 ```
-$ gendiff --format json <filePath1> <filePath2>
+$ gendiff --format [formatName] <filePath1> <filePath2>
 ```
 
 ### Find difference on two .JSON files
-[![asciicast](https://asciinema.org/a/436561.svg)](https://asciinema.org/a/436561)
+[![asciicast](https://asciinema.org/a/437947.svg)](https://asciinema.org/a/437947)
 
 ### 
 
 ### Find difference on two .YAML files
-[![asciicast](https://asciinema.org/a/432140.svg)](https://asciinema.org/a/432140)
+[![asciicast](https://asciinema.org/a/437949.svg)](https://asciinema.org/a/437949)
 
-### To find difference of two JSON files with plain format use:
+### To find difference of two files with plain/json/stylish format use:
 
 ```
 $ gendiff -f plain <filePath1> <filePath2>
 ```
+### or
 
-### Find difference on two .JSON files with plain format
-[![asciicast](https://asciinema.org/a/437395.svg)](https://asciinema.org/a/437395)
+```
+$ gendiff -f json <filePath1> <filePath2>
+```
+### or
+```
+$ gendiff -f stylish <filePath1> <filePath2>
+```
+
+### Find difference on two files with plain format
+[![asciicast](https://asciinema.org/a/437950.svg)](https://asciinema.org/a/437950)
+
+### Find difference on two files with json format
+[![asciicast](https://asciinema.org/a/437951.svg)](https://asciinema.org/a/437951)
+
+### Find difference on two files with stylish format
+[![asciicast](https://asciinema.org/a/437948.svg)](https://asciinema.org/a/437948)

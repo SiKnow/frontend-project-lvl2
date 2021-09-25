@@ -21,6 +21,12 @@ $ make install
 $ gendiff <filePath1> <filePath2>
 ```
 
+### To find difference of two files with format you can use
+
+```
+$ gendiff --format json <filePath1> <filePath2>
+```
+
 ### Find difference on two .JSON files
 [![asciicast](https://asciinema.org/a/436561.svg)](https://asciinema.org/a/436561)
 

@@ -16,7 +16,7 @@ test('.json format check', () => {
 });
 
 test('.yaml format check', () => {
-  const result = genDiff('file1.yaml', 'file2.yml');
+  const result = genDiff('file1.yml', 'file2.yml');
   const answer = readFile('expect.txt').trim();
   expect(result).toEqual(answer);
 });
@@ -28,19 +28,19 @@ test('plain (json files) format check', () => {
 });
 
 test('plain (yaml files) format check', () => {
-  const result = genDiff('file1.yaml', 'file2.yml', 'plain');
+  const result = genDiff('file1.yml', 'file2.yml', 'plain');
   const answer = readFile('expected.txt').trim();
   expect(result).toEqual(answer);
 });
 
 test('stylish format check', () => {
-  const result = genDiff('file1.yaml', 'file2.yml', 'stylish');
+  const result = genDiff('file1.yml', 'file2.yml', 'stylish');
   const answer = readFile('expect.txt').trim();
   expect(result).toEqual(answer);
 });
 
 test('json (yaml files) format check', () => {
-  const result = genDiff('file1.yaml', 'file2.yml', 'json');
+  const result = genDiff('file1.yml', 'file2.yml', 'json');
   const answer = readFile('expectJson.txt').trim();
   expect(result).toEqual(answer);
 });

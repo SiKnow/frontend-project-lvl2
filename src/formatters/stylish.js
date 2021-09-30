@@ -16,12 +16,12 @@ const stringify = (value, depth) => {
   const indent = getIndent(depth);
   const lines = Object.entries(value).map(([key, val]) => {
     const depthIndent = getIndent(depth + 1);
-    return `${depthIndent} ${key}: ${stringify(val, depth + 1)}`;
+    return `${depthIndent}  ${key}: ${stringify(val, depth + 1)}`;
   });
   return [
     '{',
     ...lines,
-    `${indent} }`,
+    `${indent}  }`,
   ].join('\n');
 };
 
@@ -31,8 +31,8 @@ const stylish = (tree) => {
     return diffTree.map((node) => {
       switch (node.type) {
         case 'nested':
-          return `${indent} ${node.name}: ${[
-            '{', style(node.children, depth + 1), `${indent} }`].join('\n')}`;
+          return `${indent}  ${node.name}: ${[
+            '{', style(node.children, depth + 1), `${indent}  }`].join('\n')}`;
         case 'change':
           const data1 = stringify(node.value1, depth);
           const data2 = stringify(node.value2, depth);

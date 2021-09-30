@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
 const buildTree = (file1, file2) => {
-  const keys = _.union(Object.keys(file1), Object.keys(file2)).sort();
-  return keys.map((key) => {
+  const keys = _.union(Object.keys(file1), Object.keys(file2));
+  return _.sortBy(keys).map((key) => {
     const value1 = file1[key];
     const value2 = file2[key];
 

@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals';
 import path from 'path';
-import url from 'url';
 import fs from 'fs';
+import url from 'url';
 import genDiff from '../src/index.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -9,44 +9,21 @@ const __dirname = path.dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-test('.json format check', () => {
-  const result = genDiff('file1.json', 'file2.json');
-  const answer = readFile('expect.txt').trim();
-  expect(result).toEqual(answer);
-});
+const fileJson1 = getFixturePath('file1.json');
+const fileJson2 = getFixturePath('file2.json');
+const fileYaml1 = getFixturePath('file1.yml');
+const fileYaml2 = getFixturePath('file2.yml');
 
-test('.yaml format check', () => {
-  const result = genDiff('file1.yml', 'file2.yml');
-  const answer = readFile('expect.txt').trim();
-  expect(result).toEqual(answer);
-});
-
-test('plain (json files) format check', () => {
-  const result = genDiff('file1.json', 'file2.json', 'plain');
-  const answer = readFile('expected.txt').trim();
-  expect(result).toEqual(answer);
-});
-
-test('plain (yaml files) format check', () => {
-  const result = genDiff('file1.yml', 'file2.yml', 'plain');
-  const answer = readFile('expected.txt').trim();
-  expect(result).toEqual(answer);
-});
-
-test('stylish format check', () => {
-  const result = genDiff('file1.yml', 'file2.yml', 'stylish');
-  const answer = readFile('expect.txt').trim();
-  expect(result).toEqual(answer);
-});
-
-test('json (yaml files) format check', () => {
-  const result = genDiff('file1.yml', 'file2.yml', 'json');
-  const answer = readFile('expectJson.txt').trim();
-  expect(result).toEqual(answer);
-});
-
-test('json (json files) format check', () => {
-  const result = genDiff('file1.json', 'file2.json', 'json');
-  const answer = readFile('expectJson.txt').trim();
-  expect(result).toEqual(answer);
+test.each`
+      file1    |     file2    |   format     | expected
+  ${fileJson1} | ${fileJson2} | ${'stylish'} | ${'expect.txt'}
+  ${fileJson1} | ${fileJson2} | ${'plain'}   | ${'expected.txt'}
+  ${fileJson1} | ${fileJson2} | ${'json'}    | ${'expectJson.txt'}
+  ${fileYaml1} | ${fileYaml2} | ${'stylish'} | ${'expect.txt'}
+  ${fileYaml1} | ${fileYaml2} | ${'plain'}   | ${'expected.txt'}
+  ${fileYaml1} | ${fileYaml2} | ${'json'}    | ${'expectJson.txt'}
+  `('genDiff(file1, file2, format) must to be $expected', ({
+  file1, file2, format, expected,
+}) => {
+  expect(genDiff(file1, file2, format)).toBe(readFile(expected));
 });
